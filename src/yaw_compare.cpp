@@ -42,8 +42,8 @@ int main(int argc ,char **argv){
 
 	while (ros::ok())
 	{
-		stm32_yaw = stm32_yaw * PI / 180;
-		ground_truth_yaw = ground_truth_yaw * PI / 180;
+		stm32_yaw = stm32_yaw * 180 / PI;
+		ground_truth_yaw = ground_truth_yaw * 180 / PI;
 		error_percent = abs((stm32_yaw - ground_truth_yaw) / ground_truth_yaw);
 		cout << "stm32: " << stm32_yaw << "\t ground truth: " << ground_truth_yaw << "\t Error: " << error_percent << endl;
 		ros::spinOnce();
