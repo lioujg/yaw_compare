@@ -38,14 +38,14 @@ int main(int argc ,char **argv){
 	ros::Subscriber stm32_sub = n.subscribe("/stm32_payload_yaw", 1000, stm_callback);
 	ros::Subscriber optitrack_sub = n.subscribe("/vrpn_client_node/payload/pose",1000, optitrack_callback);
 	ros::Rate loop_rate(10);
-	float error_percent = 0;
+	float error = 0;
 
 	while (ros::ok())
 	{
 		stm32_yaw = stm32_yaw * 180 / PI;
 		ground_truth_yaw = ground_truth_yaw * 180 / PI;
-		error_percent = abs((stm32_yaw - ground_truth_yaw) / ground_truth_yaw);
-		cout << "stm32: " << stm32_yaw << "\t ground truth: " << ground_truth_yaw << "\t Error: " << error_percent << endl;
+		error = abs(stm32_yaw - ground_truth_yaw);
+		cout << "stm32: " << stm32_yaw << "\t ground truth: " << ground_truth_yaw << "\t Error: " << error << endl;
 		ros::spinOnce();
 		loop_rate.sleep();
 	}
