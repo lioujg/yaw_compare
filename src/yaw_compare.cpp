@@ -37,7 +37,7 @@ int main(int argc ,char **argv){
 	ros::NodeHandle n;
 	ros::Subscriber stm32_sub = n.subscribe("/stm32_payload_yaw", 1000, stm_callback);
 	ros::Subscriber optitrack_sub = n.subscribe("/vrpn_client_node/payload/pose",1000, optitrack_callback);
-	ros::Rate loop_rate(10);
+	ros::Rate loop_rate(50);
 	float error = 0;
 
 	while (ros::ok())
